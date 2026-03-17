@@ -1,6 +1,6 @@
 CC = gcc
 CFLAGS = -Wall -Werror -g
-CFLAGS += /usr/local/include
+CFLAGS += -I/usr/local/include
 LDFLAGS += -L/usr/local/lib
 LDLIBS = -lpaho-mqtt3a
 SOURCES = main.c
