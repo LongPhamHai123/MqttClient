@@ -6,7 +6,7 @@ LDLIBS += -lpaho-mqtt3c
 SOURCES = main.c
 OBJECTS = $(SOURCES:.c=.o)
 %.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@ $(LDFLAGS) $(LDLIBS)
+	$(CC) $(CFLAGS) -c $< -o $@
 all: build
 build: $(OBJECTS)
 	$(CC) $(LDFLAGS) -o $@ $^ $(LDLIBS)
