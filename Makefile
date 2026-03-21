@@ -5,7 +5,9 @@ CFLAGS += -Wall -Werror -g
 CFLAGS += -I/usr/local/include
 
 LDFLAGS += -L/usr/local/lib
-LDLIBS += -lpaho-mqtt3c
+LDLIBS += -lpaho-mqtt3c \
+		  -lcjson \
+		  -lcjson_utils
 
 OBJECTS_DIR = build
 
