@@ -5,7 +5,7 @@
 
 #include <cjson/cJSON.h>
 
-#define ADDRESS     "tcps://broker.hivemq.com:8883"
+#define ADDRESS     "mqtts://broker.hivemq.com:8883"
 #define CLIENTID    "ExampleClient"
 #define TOPIC       "MQTT Examples"
 #define PAYLOAD     "Hello World!"
@@ -53,6 +53,8 @@ int main(int argc, char* argv[])
 {
     MQTTClient client;
     MQTTClient_connectOptions conn_opts = MQTTClient_connectOptions_initializer;
+    MQTTClient_SSLOptions ssl_opts = MQTTClient_SSLOptions_initializer;
+    ssl_opts.enableServerCertAuth = 0; // test thôi (bỏ verify)
     int rc;
  
     if ((rc = MQTTClient_create(&client, ADDRESS, CLIENTID,
@@ -72,6 +74,8 @@ int main(int argc, char* argv[])
  
     conn_opts.keepAliveInterval = 20;
     conn_opts.cleansession = 5;
+    conn_opts.ssl = &ssl_opts;
+
     if ((rc = MQTTClient_connect(client, &conn_opts)) != MQTTCLIENT_SUCCESS)
     {
         printf("Failed to connect, return code %d\n", rc);
