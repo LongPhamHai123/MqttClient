@@ -3,11 +3,13 @@ NAME_MODULE = example/example
 
 CFLAGS += -Wall -Werror -g
 CFLAGS += -I/usr/local/include
-
+LDFLAGS += -L/usr/lib
 LDFLAGS += -L/usr/local/lib
 LDLIBS += -lpaho-mqtt3cs \
 		  -lcjson \
-		  -lcjson_utils
+		  -lcjson_utils \
+		  -lssl \
+		  -lcrypto
 
 OBJECTS_DIR = build
 
