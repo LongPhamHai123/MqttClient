@@ -13,6 +13,8 @@ OBJECTS = $(addprefix $(OBJECTS_DIR)/, $(SOURCES_:.c=.o))
 create:
 # 	$(Print) CREATE $(OBJECTS_DIR) folder
 	@echo CREATE $(OBJECTS_DIR) folder
+	@echo $(SOURCES_)
+	@echo $(OBJECTS)
 	@mkdir -p $(OBJECTS_DIR)
 all: create $(NAME_MODULE)
 $(OBJECTS_DIR)/%.o: %.c
