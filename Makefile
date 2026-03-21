@@ -18,5 +18,5 @@ build: $(OBJECTS)
 	$(Print) $(CC) $(LDFLAGS) -o $@ $^ $(LDLIBS)
 	$(CC) $(LDFLAGS) -o $@ $^ $(LDLIBS)
 clean:
-	rm -f $(OBJECTS_DIR)
+	rm -rf $(OBJECTS_DIR) $(OBJECTS)
 
