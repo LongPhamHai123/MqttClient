@@ -1,27 +1,35 @@
 CC = gcc
 NAME_MODULE = example/example
+
 CFLAGS += -Wall -Werror -g
 CFLAGS += -I/usr/local/include
+
 LDFLAGS += -L/usr/local/lib
 LDLIBS += -lpaho-mqtt3c
+
 OBJECTS_DIR = build
+
+# Nếu có nhiều file thì thêm vào đây
 SOURCES = main.c
-SOURCES_= $(notdir $(SOURCES))
-OBJECTS = $(addprefix $(OBJECTS_DIR)/, $(SOURCES_:.c=.o))
-# OBJECTS = $(SOURCES:.c=.o)
+# ví dụ:
+# SOURCES = src/main.c src/utils.c
+
+OBJECTS = $(addprefix $(OBJECTS_DIR)/, $(SOURCES:.c=.o))
 
 create:
-# 	$(Print) CREATE $(OBJECTS_DIR) folder
 	@echo CREATE $(OBJECTS_DIR) folder
-	@echo $(SOURCES_)
-	@echo $(OBJECTS)
 	@mkdir -p $(OBJECTS_DIR)
-all: create $(NAME_MODULE)
-$(OBJECTS_DIR)/%.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
-$(NAME_MODULE): $(OBJECTS)
-	$(Print) $(CC) $(LDFLAGS) -o $@ $^ $(LDLIBS)
-	$(CC) $(LDFLAGS) -o $@ $^ $(LDLIBS)
-clean:
-	rm -rf $(OBJECTS_DIR) $(OBJECTS)
+	@mkdir -p example   # tạo luôn folder output
 
+all: create $(NAME_MODULE)
+
+# RULE QUAN TRỌNG
+$(OBJECTS_DIR)/%.o: %.c
+	@mkdir -p $(dir $@)
+	$(CC) $(CFLAGS) -c $< -o $@
+
+$(NAME_MODULE): $(OBJECTS)
+	$(CC) $(LDFLAGS) -o $@ $^ $(LDLIBS)
+
+clean:
+	rm -rf $(OBJECTS_DIR) $(NAME_MODULE)
