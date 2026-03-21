@@ -5,7 +5,7 @@
 
 #include <cjson/cJSON.h>
 
-#define ADDRESS     "mqtts://broker.hivemq.com:8883"
+#define ADDRESS     "ssl://broker.hivemq.com:8883"
 #define CLIENTID    "ExampleClient"
 #define TOPIC       "MQTT Examples"
 #define PAYLOAD     "Hello World!"
@@ -54,6 +54,7 @@ int main(int argc, char* argv[])
     MQTTClient client;
     MQTTClient_connectOptions conn_opts = MQTTClient_connectOptions_initializer;
     MQTTClient_SSLOptions ssl_opts = MQTTClient_SSLOptions_initializer;
+    ssl_opts.trustStore = "ca.crt";  // file CA certificate
     ssl_opts.enableServerCertAuth = 1; // test thôi (bỏ verify)
     int rc;
  
