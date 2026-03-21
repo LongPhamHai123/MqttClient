@@ -20,6 +20,8 @@ create:
 	@echo CREATE $(OBJECTS_DIR) folder
 	@mkdir -p $(OBJECTS_DIR)
 	@mkdir -p example   # tạo luôn folder output
+	@echo $(SOURCES)
+	@echo $(OBJECTS)
 
 all: create $(NAME_MODULE)
 
