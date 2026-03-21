@@ -16,15 +16,14 @@ SOURCES = main.c
 
 OBJECTS = $(addprefix $(OBJECTS_DIR)/, $(SOURCES:.c=.o))
 
+all: create $(NAME_MODULE)
+
 create:
 	@echo CREATE $(OBJECTS_DIR) folder
 	@mkdir -p $(OBJECTS_DIR)
 	@mkdir -p example   # tạo luôn folder output
 	@echo $(SOURCES)
 	@echo $(OBJECTS)
-
-all: create $(NAME_MODULE)
-
 # RULE QUAN TRỌNG
 $(OBJECTS_DIR)/%.o: %.c
 	@echo CC 	$<
