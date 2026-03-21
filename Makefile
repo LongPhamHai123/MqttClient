@@ -11,6 +11,7 @@ OBJECTS = $(addprefix $(OBJECTS_DIR)/, $(SOURCES_:.c=.o))
 $(OBJECTS_DIR)/%.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 create:
+# 	$(Print) CREATE $(OBJECTS_DIR) folder
 	$(Print) CREATE $(OBJECTS_DIR) folder
 	@mkdir -p $(OBJECTS_DIR)
 all: create build
