@@ -5,7 +5,7 @@
 
 #include <cjson/cJSON.h>
 
-#define ADDRESS     "tcp://test.mosquitto.org:1883"
+#define ADDRESS     "tcp://broker.hivemq.com:1883"
 #define CLIENTID    "ExampleClientSub"
 #define TOPIC       "MQTT Examples"
 #define PAYLOAD     "Hello World!"
@@ -72,7 +72,7 @@ int main(int argc, char* argv[])
     }
  
     conn_opts.keepAliveInterval = 20;
-    conn_opts.cleansession = 1;
+    conn_opts.cleansession = 5;
     if ((rc = MQTTClient_connect(client, &conn_opts)) != MQTTCLIENT_SUCCESS)
     {
         printf("Failed to connect, return code %d\n", rc);
