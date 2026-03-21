@@ -27,10 +27,12 @@ all: create $(NAME_MODULE)
 
 # RULE QUAN TRỌNG
 $(OBJECTS_DIR)/%.o: %.c
-	@mkdir -p $(dir $@)
+	@echo CC 	$<
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(NAME_MODULE): $(OBJECTS)
+	@echo ---------- START LINK EXAMPLE ----------
+	@echo CC 	$^ -o $@
 	$(CC) $(LDFLAGS) -o $@ $^ $(LDLIBS)
 
 clean:
