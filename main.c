@@ -54,8 +54,8 @@ int main(int argc, char* argv[])
     MQTTClient client;
     MQTTClient_connectOptions conn_opts = MQTTClient_connectOptions_initializer;
     MQTTClient_SSLOptions ssl_opts = MQTTClient_SSLOptions_initializer;
-    // ssl_opts.trustStore = "ca.crt";  // file CA certificate
-    ssl_opts.enableServerCertAuth = 0; // test thôi (bỏ verify)
+    ssl_opts.trustStore = "/etc/ssl/certs/ca-certificates.crt";  // file CA certificate
+    ssl_opts.enableServerCertAuth = 1; // test thôi (bỏ verify)
     int rc;
  
     if ((rc = MQTTClient_create(&client, ADDRESS, CLIENTID,
