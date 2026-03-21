@@ -5,8 +5,8 @@
 
 #include <cjson/cJSON.h>
 
-#define ADDRESS     "tcp://broker.hivemq.com:1883"
-#define CLIENTID    "ExampleClientSub"
+#define ADDRESS     "tcps://broker.hivemq.com:8883"
+#define CLIENTID    "ExampleClient"
 #define TOPIC       "MQTT Examples"
 #define PAYLOAD     "Hello World!"
 #define QOS         0
@@ -29,9 +29,8 @@ int msgarrvd(void *context, char *topicName, int topicLen, MQTTClient_message *m
     memcpy(json_str, message->payload, message->payloadlen);
     json_str[message->payloadlen] = '\0';
     cJSON *root = cJSON_Parse(json_str);
-    if (root == NULL) {
-        printf("JSON parse error\n");
-    } else {
+    if (root != NULL) {
+        // printf("JSON parse error\n");
         cJSON *msg = cJSON_GetObjectItem(root, "msg");
         if (cJSON_IsString(msg) && msg->valuestring != NULL) {
             printf("msg: %s\n", msg->valuestring);
